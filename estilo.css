@@ -1,0 +1,256 @@
+
+ul{
+    position: fixed;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 165px;
+    background-color: #f1f1f1;
+    padding: 40px 12px 0 0;
+    float: left;
+    height: 100%; position: fixed; top: 0; left: 0;
+}
+
+li{
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+}
+
+li a {
+    display: block;
+    color: #000;
+    padding: 2px 5px;
+    text-decoration: none;
+}
+
+/* Change the link color on hover */
+li a:hover {
+    background-color: #555;
+    color: white;
+}
+
+.login-page {
+  width: 400px;
+  padding: 5% 0 0;
+  margin: auto;
+}
+
+.album-page {
+  width: 600px;
+  padding: 5% 0 0;
+  margin: auto;
+  position: relative;
+  right: 100px;
+}
+
+.admin-page {
+  max-width: 40%;
+  padding: 5% 0 0;
+  margin: auto;
+  position: relative;
+}
+
+.register-page {
+  width: 400px;
+  padding: 3% 0 0;
+  margin: auto;
+}
+
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  margin: 0 auto 50px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+#content { 
+    max-width: 84%;
+    position: relative;
+    left:140px;
+    padding: 0 0 50px 0; 
+    margin: 0px auto;
+}
+
+#albumes { 
+    max-width: 84%;
+    position: relative;
+    left:140px;
+    padding: 0 0 50px 0; 
+    margin: 0px auto;
+}
+
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+  max-width: 400px;
+}
+
+input, select{
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+  max-width: 400px;
+}
+
+select{
+   text-align: center;
+}
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+  background: #43A047;
+}
+
+
+body {
+  background-image: url("imagenes/2252.jpg");
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; 
+   font-size: 120%;
+}
+
+.form input[type=submit] {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  outline: 0;
+  background: #EEE9B1;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+input[type=button] {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  outline: 0;
+  background: #EEE9B1;
+  width: 40%;
+  border: 0;
+  padding: 15px;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.form input[type=submit]:hover,.form input[type=submit]:active,.form input[type=submit]:focus {
+  background: #E4CE83;
+}
+
+ input[type=button]:hover,input[type=button]:active,.form input[type=button]:focus {
+  background: #E4CE83;
+}
+
+.form .message {
+  margin: 10px 0 0;
+  color: #b3b3b3;
+  font-size: 14px;
+}
+.form .message a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+.alert {
+    padding: 15px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 10px;
+    visibility:hidden;
+}
+
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: black;
+}
+
+img.resize{
+    width:100%; /* you can use % */
+    height: auto;
+}
+
+.box2 {
+  max-width: 30%;
+  position:relative;
+  display: inline-block;
+  height: auto;
+  margin: 0.5em;
+  border: 1px solid white; 
+  background-color: #44CBCE;
+}
+
+#tablaAlbum{
+  width: 80%;
+}
+
+img {
+  display: block;
+  max-width:460px;
+  max-height:200px;
+  width: auto;
+  height: auto;
+}
+
+
+#nav{
+  max-width: 15%;
+}
+
+#basura{
+  max-width: 40px;
+  height: auto;
+}
+
+#basuri {
+  position:absolute;
+  display: inline-block;
+}
+
