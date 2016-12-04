@@ -161,10 +161,12 @@
 					var respuesta= xmlhttp.responseText;
 					if(respuesta=="Usuario validado correctamente!"){
 						jQuery(function(){sweetAlert('', 'Usuario rechazado correctamente!', 'success');});
+					}else if(respuesta=="Usuario expulsado correctamente!"){
+						jQuery(function(){sweetAlert('', 'Usuario expulsado correctamente!', 'success');});
 					}else{
 						jQuery(function(){sweetAlert('Opss...', 'Error al rechazar al usuario!', 'error');});
 					}
-					 actualizarSelect();
+					tipoUsuarioSeleccionado();
 				}
 			}
 			
@@ -190,6 +192,20 @@ function actualizarSelect()
 				}
 			}
 			xmlhttp.open("GET","actualizarSelect.php"); 
+			xmlhttp.send();
+		}
+		
+function actualizarSelectTodos()
+	{
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function()
+			{
+				if (xmlhttp.readyState==4 && xmlhttp.status==200)
+				{
+						document.getElementById("formulario").innerHTML = xmlhttp.responseText;
+				}
+			}
+			xmlhttp.open("GET","actualizarSelectTodos.php"); 
 			xmlhttp.send();
 		}
 	

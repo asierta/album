@@ -52,9 +52,8 @@
 			 </div>
 	<?php
     	
-    	
     }else{
-    	$usuarios = mysqli_query($mysqli, "SELECT * FROM Usuarios Where usuario!='admin'");
+    	$usuarios = mysqli_query($mysqli, "SELECT * FROM Usuarios Where usuario!='admin' AND validado='1'");
     	if (!$usuarios) {
         	echo 'No se pudo ejecutar la consulta: ' . mysql_error();
         	exit;
