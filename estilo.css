@@ -4,7 +4,7 @@ ul{
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 165px;
+    max-width: 18%;
     background-color: #f1f1f1;
     padding: 40px 12px 0 0;
     float: left;
@@ -22,6 +22,7 @@ li a {
     color: #000;
     padding: 2px 5px;
     text-decoration: none;
+    font-size: 80%;
 }
 
 /* Change the link color on hover */
@@ -37,11 +38,17 @@ li a:hover {
 }
 
 .album-page {
-  width: 600px;
+  max-width: 54%;
+  margin: auto;
+  padding-top: 2%;
+  position: relative;
+  left: 2%;
+}
+
+.buscar-page {
+  width: 30%;
   padding: 5% 0 0;
   margin: auto;
-  position: relative;
-  right: 100px;
 }
 
 .admin-page {
@@ -57,6 +64,20 @@ li a:hover {
   margin: auto;
 }
 
+.ajustes {
+   width:25%; 
+   text-align: center;
+   height: 100%;
+   background-color:#8C9988;
+   opacity: 0.75;
+   color: white;
+   position: fixed; top: 0; right: 0;
+}
+
+h2.ajustes{
+  text-align: center;
+}
+
 .form {
   position: relative;
   z-index: 1;
@@ -68,22 +89,33 @@ li a:hover {
 }
 
 #content { 
-    max-width: 84%;
+    max-width: 82%;
     position: relative;
     left:140px;
-    padding: 0 0 50px 0; 
     margin: 0px auto;
+    bottom:30px;
+    padding-top: 2%;
 }
 
 #albumes { 
-    max-width: 84%;
+    max-width: 54%;
     position: relative;
-    left:140px;
-    padding: 0 0 50px 0; 
-    margin: 0px auto;
+    left:18%;
 }
 
-.form input {
+#fotos { 
+    max-width: 100%;
+    position: relative;
+}
+
+.foto img{ 
+    max-width: 100%;
+    height: auto;
+    position: relative;
+    width:auto;
+}
+
+.form input{
   font-family: "Roboto", sans-serif;
   outline: 0;
   background: #f2f2f2;
@@ -94,6 +126,22 @@ li a:hover {
   box-sizing: border-box;
   font-size: 14px;
   max-width: 400px;
+  text-align: left;
+}
+
+.form input[type="radio"] {
+   font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+  max-width: 400px;
+  text-align: left;
+  margin-right: 0;
 }
 
 input, select{
@@ -103,7 +151,7 @@ input, select{
   width: 100%;
   border: 0;
   margin: 0 0 15px;
-  padding: 15px;
+  padding: 10px;
   box-sizing: border-box;
   font-size: 14px;
   max-width: 400px;
@@ -112,7 +160,7 @@ input, select{
 select{
    text-align: center;
 }
-.form button {
+.form button{
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
@@ -126,6 +174,7 @@ select{
   transition: all 0.3 ease;
   cursor: pointer;
 }
+
 .form button:hover,.form button:active,.form button:focus {
   background: #43A047;
 }
@@ -137,15 +186,16 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; 
    font-size: 120%;
+   
 }
 
-.form input[type=submit] {
+.form input[type=submit], .boton button  {
   font-family: "Roboto", sans-serif;
   font-weight: bold;
   text-transform: uppercase;
   outline: 0;
   background: #EEE9B1;
-  width: 100%;
+  width: 50%;
   border: 0;
   padding: 15px;
   font-size: 14px;
@@ -154,12 +204,23 @@ body {
   cursor: pointer;
 }
 
-input[type=button] {
+
+.boton button  {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  border: 0;
+  padding: 15px;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+}
+
+input[type=button]{
   font-family: "Roboto", sans-serif;
   font-weight: bold;
   text-transform: uppercase;
   outline: 0;
-  background: #EEE9B1;
+  background: #E4CE83;
   width: 40%;
   border: 0;
   padding: 15px;
@@ -224,7 +285,6 @@ img.resize{
   height: auto;
   margin: 0.5em;
   border: 1px solid white; 
-  background-color: #44CBCE;
 }
 
 #tablaAlbum{
@@ -241,7 +301,7 @@ img {
 
 
 #nav{
-  max-width: 15%;
+  max-width: 18%;
 }
 
 #basura{
@@ -252,5 +312,64 @@ img {
 #basuri {
   position:absolute;
   display: inline-block;
+}
+
+
+.upload{
+background-color:red;
+border:1px solid red;
+border-radius:5px;
+padding:10px;
+box-shadow:2px 2px 15px rgba(0,0,0,.75)
+}
+.upload:hover{
+cursor:pointer;
+background:#c20b0b;
+box-shadow:0 0 5px rgba(0,0,0,.75)
+}
+
+#upload{
+margin-left:45px;
+text-align:center;
+}
+
+#noerror{
+color:green;
+text-align:left
+}
+#error{
+color:red;
+text-align:left
+}
+#img{
+width:17px;
+border:none;
+height:17px;
+margin-left:-20px;
+margin-bottom:91px
+}
+.abcd{
+text-align:center
+}
+.abcd img{
+height:100px;
+width:100px;
+padding:5px;
+border:1px solid #e8debd
+}
+
+.filediv{
+  background-color: #ffffb3;
+}
+.privacidad{
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+
+.radio{
+  margin-left: auto;
+  margin-right: auto;
 }
 

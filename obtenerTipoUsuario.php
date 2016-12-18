@@ -1,10 +1,5 @@
 <?php
-    $servername = getenv('IP');
-	$username = getenv('C9_USER');
-	$password = "";
-	$dbport = 3306;
-	// Create connection
-	$mysqli = new mysqli($servername, $username, $password, "album", $dbport);
+    include 'conexionBD.php';
     $id=$_GET['id'];
     if($id=="pendientes"){
     	$sql="SELECT * FROM Usuarios WHERE validado='false'";

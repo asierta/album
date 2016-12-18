@@ -27,12 +27,7 @@
 	</div>
 	<div id="content">
 		<?php
-		$servername = getenv('IP');
-		$username = getenv('C9_USER');
-		$password = "";
-		$dbport = 3306;
-		// Create connection
-		$mysqli = new mysqli($servername, $username, $password, "album", $dbport);
+		include 'conexionBD.php';
 		$sql="SELECT * FROM Usuarios WHERE validado='false'";
 		$usuarios=mysqli_query($mysqli ,$sql);
 		if (!$usuarios)

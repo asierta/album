@@ -12,11 +12,18 @@
 		<title>Registro</title>
 	</head>
 <body>
- <div class="register-page" >
- 	 <div class="alert" id="alert">
-  		<span class="closebtn" onclick="this.parentElement.style.visibility='hidden';">&times;</span>
-  				<div id="error">This is an alert box.</div>
+	<div id="nav">
+		<?php
+			session_start();
+			if(isset($_SESSION['usuario'])){
+				echo '<script>swal({ title: "Opss...", text: "Ya has iniciado sesión",type: "warning"}, function() {
+				            window.location = "home.php";});</script>';			
+			}else{
+	    		 include 'menu.php';
+			}
+		?>
 	</div>
+ <div class="register-page" >
  	<div class="form">
  		<h1>Registro</h1>
  		<form id="registro" action="Registro.php"   method="post" onSubmit="return verificar()">
@@ -56,12 +63,7 @@
 		}else if($_POST['pass']!=$_POST['pass2']){
 			echo "<script>jQuery(function(){sweetAlert('', 'Las contraseñas no coinciden!', 'warning');});</script>";	
 		}else{
-			$servername = getenv('IP');
-			$username = getenv('C9_USER');
-			$password = "";
-			$dbport = 3306;
-		    // Create connection
-		    $mysqli = new mysqli($servername, $username, $password, "album", $dbport);
+			include 'conexionBD.php';
 		    $sql="INSERT INTO Usuarios VALUES ('$_POST[email]','$_POST[nombre]','$_POST[apellidos]','$_POST[usuario]','$_POST[pass]', '0')";
 			if (!mysqli_query($mysqli ,$sql))
 			{

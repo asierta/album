@@ -1,10 +1,5 @@
 <?php
-    $servername = getenv('IP');
-	$username = getenv('C9_USER');
-	$password = "";
-	$dbport = 3306;
-	// Create connection
-	$mysqli = new mysqli($servername, $username, $password, "album", $dbport);
+    include 'conexionBD.php';
     $id=$_GET['id'];
     $sql = mysqli_query($mysqli, "SELECT Email, Nombre, Apellidos, Usuario, Validado FROM Usuarios WHERE Usuario='$id'");
     if (!$sql) {

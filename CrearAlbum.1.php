@@ -22,26 +22,14 @@
  				<form id="album" action="CrearAlbum.php" method="post" enctype="multipart/form-data">
    					Nombre : <br><input type="text" placeholder="nombre" required id="nombre" name="nombre" /><br><br>               
 					Imagen de portada: <br><input type="file" name="imagen" required id="imagen" /><br><br>
-					<fieldset class="privacidad">
-        								<legend>Privacidad de las fotos</legend>
-        									<label>
-								 				<input type="radio" name="privacidad" value="privado" checked="checked">Privada
-								 			</label>
-								 			<label>
-  												<input type="radio" name="privacidad" value="accesoLimitado">Acceso Limitado
-  											</label>
-  											<label>
-  												<input type="radio" name="privacidad" value="publica">Pública
-  											</label>
-  									</fieldset>
 					Imagenes: <br><div class="filediv">
 									Imagen 1: <br><input name="file[]" required type="file" id="file"/><br>
 								 	Nombre Foto:<br><input type="text" placeholder="nombre foto" required id="nFoto" name="nFoto[]" /><br>
-								 	Etiqueta:<br><input type="text" placeholder="etiqueta" required id="etiqueta" name="etiqueta[]" /><br>
+								 	Etiqueta:<br><input type="text" placeholder="etiqueta" required id="etiqueta" name="etiqueta[]" />
 								  </div>
 								  <br>
-							  <input type="button" id="add_more" class="upload" style="text-align:center;" value="Add More Files"/><br/>
-					<input id="input" type="submit" value="Crear" style="text-align:center;"/>
+							  <input type="button" id="add_more" class="upload" value="Add More Files"/>
+					<input id="input" type="submit" value="Crear"/>
 				</form>
 			</div>
  		</div>
@@ -51,13 +39,17 @@
 <?php
 if(isset($_FILES['imagen'])&&isset($_POST['nombre'])){
 //conexion a la base de datos
-include 'conexionBD.php';
+$servername = getenv('IP');
+$username = getenv('C9_USER');
+$password = "";
+$dbport = 3306;
+// Create connection
+$mysqli = new mysqli($servername, $username, $password, "album", $dbport);
 //comprobamos si ha ocurrido un error.
 if ($_FILES["imagen"]["error"] > 0){
 	echo "ha ocurrido un error";
 } else {
 	$nAlbum=$_POST['nombre'];
-	$privacidad=$_POST['privacidad'];
 	$sql="SELECT COUNT(*) FROM Album Where Nombre='$nAlbum' AND usuario='$usuario'";
 	if (!($num=mysqli_query($mysqli ,$sql)))
 	{
@@ -114,7 +106,7 @@ if ($_FILES["imagen"]["error"] > 0){
 								$idAlbum=$resul['Id'];
 								$nFoto=$_POST['nFoto'][$i];
 								$etiqueta=$_POST['etiqueta'][$i];
-								$sql2="INSERT INTO Foto (Album, Usuario, Nombre, Ruta, Etiqueta, Privacidad) VALUES ($idAlbum, '$usuario', '$nFoto', '$ruta2', '$etiqueta', '$privacidad')";
+								$sql2="INSERT INTO Foto (Album, Usuario, Nombre, Ruta, Etiqueta) VALUES ($idAlbum, '$usuario', '$nFoto', '$ruta2', '$etiqueta')";
 								if (!mysqli_query($mysqli ,$sql2))
 								{
 									//$error=mysqli_error($mysqli);

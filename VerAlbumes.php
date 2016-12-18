@@ -11,18 +11,12 @@
 		<link href="css/sweetalert.css" rel="stylesheet">
 	</head>
 <body>
-	
 	<div id="nav">
 		<?php include 'sesionIniciada.php';?>
 	</div>
 	<div id="albumes">
 		<?php
-		$servername = getenv('IP');
-		$username = getenv('C9_USER');
-		$password = "";
-		$dbport = 3306;
-		// Create connection
-		$mysqli = new mysqli($servername, $username, $password, "album", $dbport);
+		include 'conexionBD.php';
 		$sql="SELECT * FROM Album WHERE usuario='$usuario'";
 		$resultado=mysqli_query($mysqli ,$sql);
 		if (!$resultado)
@@ -32,13 +26,7 @@
 			if(mysqli_num_rows($resultado)>0){
     			while($row=mysqli_fetch_array($resultado)){
     				echo '<div class="box2">';
-    				echo '<a href="verFotos.php?id='.$row['Id'].'"><img class="resize" src="'.$row['Portada'].'"></a>';
-    				echo '<table id="tablaAlbum">';
-    				echo '<tr>';
-    				echo '<td><h3>'.$row['Nombre'] .'</h3></td>';
-    				echo '<td><button id="botonBorrar" style="background-color: transparent; border:transparent; cursor:pointer;" onClick="borrarAlbum(\''.$row['Id'] .'\', \''.$usuario.'\')"><img id="basura" style="float:right; right:10%; cursor:pointer;" class="resize"src="imagenes/basura.png"></button></td>';
-    				echo '</tr>';
-    					echo '</table>';
+    				echo '<img class="resize" ondblclick="verFotos(\''.$row['Id'].'\')" onClick="ajustesAlbum(\''.$row['Id'].'\')" src="'.$row['Portada'].'">';
     				echo '</div>';
     			}
 			}else{
@@ -47,9 +35,80 @@
 		}
 		?>
 		</div>
+		<div class="ajustes">
+			<h2 style="align:center;">Ajustes del álbum</h2>
+			<div id="info">
+				¡Haz click en un álbum para ver información!
+			</div>
+		</div>
 </body>
 </html>
 <script type="text/javascript">
+var timer;
+var status = 1;
+
+$(document).ready(function() {
+//  To add new input file field dynamically, on click of "Add More Files" button below function will be executed.
+var wrapper = $(".filediv"); //Fields wrapper
+var x = 1;
+$('#add_more').click(function() {
+    x++;
+ $(wrapper).append('<div>Imagen '+x+'<br><input name="file[]" required type="file" id="file"/><br>Nombre Foto:<br><input type="text" placeholder="nombre foto" required id="nFoto" name="nFoto[]" /><br> Etiqueta:<br><input type="text" placeholder="etiqueta" required id="etiqueta" name="etiqueta[]" /><a href="#" class="remove_field">X</a></div>'); 
+});
+
+$(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+        e.preventDefault(); $(this).parent('div').remove(); x--;
+    })
+});
+
+function ajustesAlbum(id){
+	status = 1;
+    timer = setTimeout(function() {
+	    if (status == 1) {
+		    var xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function()
+				{
+					if (xmlhttp.readyState==4 && xmlhttp.status==200)
+					{
+						document.getElementById("info").innerHTML = xmlhttp.responseText;
+					}
+				}
+			xmlhttp.open("GET","obtenerInfoAlbum.php?id="+id); 
+			xmlhttp.send();
+	    }
+    }, 500);
+}
+
+function verFotos(id){
+	clearTimeout(timer);
+    status = 0;
+	window.location = "verFotos.php?id="+id;
+}
+
+function aplicarCambios(id){
+	var xmlhttp = new XMLHttpRequest();
+	var nombreFoto= document.getElementById('nombreAlbum').value;
+	//alert(nombreFoto+etiqueta);
+			xmlhttp.onreadystatechange = function()
+				{
+					if (xmlhttp.readyState==4 && xmlhttp.status==200)
+					{
+						var respuesta=xmlhttp.responseText;
+						if(respuesta=="Falta información"){
+							jQuery(function(){sweetAlert('Opss...', 'Completa todos los campos!', 'warning');});
+						}else if (respuesta=='Error'){
+							jQuery(function(){sweetAlert('Opss...', 'Error a la hora de aplicar los cambios!', 'error');});
+						}else if(respuesta=='Ya existe'){
+							jQuery(function(){sweetAlert('Opss...', 'Ya tienes un álbum con este nombre!', 'warning');});
+						}else{
+							jQuery(function(){sweetAlert('', 'Álbum actualizado correctamente!', 'success');});
+						}
+					}
+				}
+			xmlhttp.open("GET","aplicarCambiosAlbum.php?id="+id+"&nombre=" + nombreFoto, true); 
+			xmlhttp.send();
+}
+
 function borrarAlbum(id, usuario)
 	{
 		var xmlhttp = new XMLHttpRequest();

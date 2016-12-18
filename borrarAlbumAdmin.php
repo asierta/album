@@ -15,7 +15,7 @@
 			die('Error al eliminar el álbum');
 		}
 			$usuario=$_GET['usuario'];
-			$sql="SELECT * FROM Album WHERE usuario='$usuario'";
+			$sql="SELECT * FROM Album";
 			$resultado=mysqli_query($mysqli ,$sql);
 			if (!$resultado)
 			{

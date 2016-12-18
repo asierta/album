@@ -1,10 +1,5 @@
 <?php
-$servername = getenv('IP');
-$username = getenv('C9_USER');
-$password = "";
-$dbport = 3306;
-// Create connection
-$mysqli = new mysqli($servername, $username, $password, "album", $dbport);
+include 'conexionBD.php';
 $usuarios = mysqli_query($mysqli, "SELECT * FROM Usuarios Where usuario!='admin' AND validado='1'");
     	if (!$usuarios) {
         	echo 'No se pudo ejecutar la consulta: ' . mysql_error();

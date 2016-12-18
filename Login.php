@@ -12,6 +12,17 @@
 		<title>Inicio sesión</title>
 	</head>
 <body>
+		<div id="nav">
+		<?php
+			session_start();
+			if(isset($_SESSION['usuario'])){
+				echo '<script>swal({ title: "Opss...", text: "Ya has iniciado sesión",type: "warning"}, function() {
+				            window.location = "home.php";});</script>';			
+			}else{
+	    		 include 'menu.php';
+			}
+		?>
+	</div>
  <div class="login-page">
  	<div class="form">
  		<h1>Iniciar Sesión</h1>
@@ -27,11 +38,7 @@
 </html>
 <?php
 	if (isset($_POST['usuario']) && isset($_POST['pass'])){
-		$servername = getenv('IP');
-		$username = getenv('C9_USER');
-		$password = "";
-		$dbport = 3306;		    // Create connection
-		$mysqli = new mysqli($servername, $username, $password, "album", $dbport);
+		include 'conexionBD.php';
 		if (!$mysqli){
 			echo "Fallo al conectar a MySQL: " . $mysqli->connect_error;
 		}
